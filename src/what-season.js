@@ -2,11 +2,10 @@ module.exports = function getSeason(date) {
 	if (date === undefined) {
 		return 'Unable to determine the time of year!';
 	}
+
 	date.getUTCDay();
+
 	if (date instanceof Date) {
-		if (new Date(date) == 'Invalid Date') {
-			throw new Error();
-		}
 		let month = date.getMonth();
 
 		if ((month >= 0 && month < 2) || month == 11) {
