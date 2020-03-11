@@ -7,7 +7,7 @@ module.exports = function createDreamTeam(members) {
         if (typeof members[i] != 'string') {
             continue;
         }
-		members[i] = members[i].trim();
+        members[i] = members[i].trim();
         nameTeam += members[i][0];
     }
     nameTeam = nameTeam.toLocaleUpperCase().split('').sort().join('');
