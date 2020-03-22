@@ -1,24 +1,21 @@
 module.exports = function repeater(str, options) {
-	let addition = '';
+	let result = str;
 	let repeatTimes;
-	let additionSeparator;
-	let repeatTimesAddition;
 	let separator;
+	let additionSeparator;
+	let addition;
+	let additionRepeatTimes;
 
-	if ('addition' in options) {
-		additionSeparator = 'additionSeparator' in options ? options.additionSeparator : '|';
-		repeatTimesAddition = options.additionRepeatTimes === undefined ? 1 : options.additionRepeatTimes;
-
-		addition = (additionSeparator + options.addition).repeat(repeatTimesAddition);
-		addition = addition.replace(additionSeparator, '');
+	if ('additionRepeatTimes' in options) {
+		additionRepeatTimes = options.additionRepeatTimes === undefined ? 1 : options.additionRepeatTimes;
+		additionSeparator = options.additionSeparator === undefined ? '|' : options.additionSeparator;
+		addition = options.addition;
+		result = str + (addition + additionSeparator).repeat(additionRepeatTimes).slice(0, -additionSeparator.length);
 	}
+	separator = options.separator === undefined ? '+' : (separator = options.separator);
+	repeatTimes = options.repeatTimes === undefined ? 1 : options.repeatTimes;
 
-	if ('repeatTimes' in options) {
-		repeatTimes = options.repeatTimes === undefined ? (repeatTimes = 1) : (repeatTimes = options.repeatTimes);
-		separator = 'separator' in options ? options['separator'] : '+';
+	str = (result + separator).repeat(repeatTimes).slice(0, -separator.length);
 
-		str = (separator + str + addition).repeat(repeatTimes);
-		str = str.replace(separator, '');
-	}
 	return str;
 };
